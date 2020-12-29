@@ -1,0 +1,75 @@
+<div id="main" class="pt-4" ng-init="init()">
+	<h3 class="page-header" align="center">{{title}}</h3>
+	<hr>
+	<form id="formCustomer" name="formCustomer">
+
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputNome">Nome <span style="color: red;">*</span></label>
+				<input type="text" class="form-control" id="nome" ng-model="customerObj.nome" placeholder="Nome" required>
+			</div>
+			<div class="form-group col-md-2">
+				<label for="inputNomeEmpresa">Data de Nascimento <span style="color: red;">*</span></label>
+				<input type="date" class="form-control" id="dtnascimento" ng-model="customerObj.dtnascimento" required>
+			</div>
+			<div class="form-group col-md-2">
+				<label	for="inputSexo">Sexo <span style="color: red;">*</span></label>
+				<select id="sexo" ng-model="customerObj.sexo" class="form-control" required>
+					<option value="M">Masculino	</option>
+					<option value="F">Feminino	</option>
+					<option value="O">Outros	</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-3">
+				<label for="inputCep">CEP</label>
+				<input type="text" class="form-control" id="cep" ng-model="customerObj.cep" ng-blur="fetchLocationData(customerObj.cep)" ui-br-cep-mask placeholder="CEP">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="inputEndereco">Endereço</label>
+				<input type="text" class="form-control" id="endereco" ng-model="customerObj.endereco" placeholder="Endereço">
+			</div>
+			<div class="form-group col-md-2">
+				<label for="inputNumero">Número</label>
+				<input type="string" class="form-control" id="numero" ng-model="customerObj.numero" placeholder="Número">
+			</div>
+			<div class="form-group col-md-2">
+				<label for="inputComplemento">Complemento</label>
+				<input type="text" class="form-control" id="complemento" ng-model="customerObj.complemento" placeholder="Complemento">
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-3">
+				<label for="inputBairro">Bairro</label>
+				<input type="text" class="form-control" id="bairro" ng-model="customerObj.bairro" placeholder="Bairro">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="inputCidade">Cidade</label>
+				<input type="text" class="form-control" id="cidade" ng-model="customerObj.cidade" placeholder="Cidade">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="inputEstado">Estado</label>
+				<select class="form-control" id="estado" ng-model="customerObj.estado" ng-options="uf.sigla as uf.nome for uf in ufs">
+					<option value="">Selecione o Estado</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<span style="color: red;font-size: small;">Campos com * são obrigatórios.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 offset-md-8">
+				<a class="btn btn-block btn-outline-dark" ng-click="goList()">Voltar</a>
+			</div>
+			<div class="col-md-2 ">
+				<button class="btn btn-block btn-success" ng-click="validSaveOrEdit()" ng-disabled="formCustomer.$invalid">Salvar</button>
+			</div>
+		</div>
+	</form>
+</div>

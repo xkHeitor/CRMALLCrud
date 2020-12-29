@@ -1,0 +1,51 @@
+<div id="main" class="pt-4" ng-init="initialize()">
+	<div id="top" class="row">
+		<div class="col-md-3">
+			<h2>Clientes</h2>
+		</div>
+
+		<div class="col-md-6">
+			<div class="input-group h2">
+				<input name="searchText" class="form-control" id="searchText" ng-model="searchText" type="text" placeholder="Pesquisar Cliente">
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<a href="#!addEditCustomers" class="btn btn-primary pull-right h2">Novo Cliente</a>
+		</div>
+	</div>
+
+	<hr />
+	<div id="list" class="row">
+
+		<div class="col-md-12" ng-if="emptyCustomers" align="center">
+			<h4 style="text-align: center;">Nenhum usuário cadastrado!</h4>
+		</div>
+
+		<div class="table-responsive col-md-12" ng-if="!emptyCustomers">
+			<table class="table table-striped" cellspacing="0" cellpadding="0" >
+				<thead>
+					<tr>
+						<th>Nome			</th>
+						<th>Data de Nasc.	</th>
+						<th>Sexo			</th>
+						<th class="actions">Ações</th>
+					 </tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="(key, customer) in customers | filter : searchText">
+						<td>{{customer.nome}}			</td>
+						<td>{{customer.dtnascimento		| date: 'dd/MM/yyyy' : 'UTC'}}	</td>
+						<td>{{customer.sexo				| gender}}				</td>
+						<td>
+                        	<a class="btn btn-warning btn-xs" ng-click="goEdit(customer)" 	>Editar</a>
+                       		<a class="btn btn-danger btn-xs" ng-click="delete(customer)"	>Excluir</a>
+						</td>
+					</tr>
+				</tbody>
+			 </table>
+
+		 </div>
+	 </div>
+
+</div>
